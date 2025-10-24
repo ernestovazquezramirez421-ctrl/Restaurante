@@ -1,0 +1,115 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Marisquería El Puerto</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#menu">Menú</a></li>
+        <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="inicio" class="hero d-flex flex-column justify-content-center align-items-center text-white text-center"
+         style="position: relative; background: url('https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg') center/cover no-repeat; height: 90vh; margin-top: 56px;">
+  <div style="position: absolute; inset: 0; background: rgba(0, 51, 102, 0.6); z-index: 1;"></div>
+  <div style="position: relative; z-index: 2;">
+    <h1 class="display-3 fw-bold">Marisquería El Puerto</h1>
+    <p class="lead mb-4">Sabores frescos del mar directo a tu mesa</p>
+    <a href="#menu" class="btn btn-primary btn-lg shadow">Explora Nuestro Menú</a>
+  </div>
+</section>
+
+<!-- Sobre Nosotros -->
+<section id="nosotros" class="container my-5">
+  <div class="row align-items-center gy-4">
+    <div class="col-md-6">
+      <h2 class="mb-3">Sobre Nosotros</h2>
+      <p>
+        En <strong>Marisquería El Puerto</strong> ofrecemos más de 20 años de tradición en platillos de mariscos frescos y de la mejor calidad.
+        Nuestro compromiso es que cada bocado te transporte a la costa, con recetas auténticas y un ambiente familiar.
+      </p>
+      <p>
+        Ven y disfruta de una experiencia gastronómica única con ingredientes frescos seleccionados diariamente.
+      </p>
+    </div>
+    <div class="col-md-6">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" 
+           alt="Mariscos frescos" class="img-fluid rounded shadow-sm">
+    </div>
+  </div>
+</section>
+
+<!-- Menú -->
+<section id="menu" class="container my-5">
+  <h2 class="section-title text-center mb-5 fw-bold" style="font-size: 2.5rem;">Nuestro Menú</h2>
+  <div class="row text-center gy-4">
+    <div class="col-md-4">
+      <h4 class="mb-3">Entradas</h4>
+      <ul class="list-unstyled fs-5">
+        <li>• Ceviche Clásico</li>
+        <li>• Camarones Empanizados</li>
+        <li>• Calamares a la Romana</li>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h4 class="mb-3">Platos Fuertes</h4>
+      <ul class="list-unstyled fs-5">
+        <li>• Paella de Mariscos</li>
+        <li>• Pescado a la Veracruzana</li>
+        <li>• Langosta a la Parrilla</li>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h4 class="mb-3">Postres</h4>
+      <ul class="list-unstyled fs-5">
+        <li>• Flan Casero</li>
+        <li>• Tres Leches</li>
+        <li>• Helado de Coco</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto" class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Contacto</h2>
+        <p>¿Quieres reservar o tienes alguna consulta? Contáctanos.</p>
+        <p><strong>Teléfono:</strong> (123) 456-7890</p>
+        <p><strong>Email:</strong> contacto@marisqueriaelpuerto.com</p>
+        <p><strong>Dirección:</strong> Calle Mar, 456, Ciudad Costera</p>
+      </div>
+      <div class="col-md-6">
+        <h2>Newsletter</h2>
+        <p>Suscríbete para recibir nuestras promociones y novedades.</p>
+        <form>
+          <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Tu correo electrónico" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Suscribirme</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-primary text-white text-center py-4 mt-5">
+  <p class="mb-0">&copy; 2025 Marisquería El Puerto. Todos los derechos reservados.</p>
+</footer>
+{% endblock %}

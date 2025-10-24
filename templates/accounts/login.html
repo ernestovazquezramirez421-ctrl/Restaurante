@@ -1,0 +1,49 @@
+{% extends "main/base.html" %}
+
+{% block title %}Login - Marisquería El Puerto{% endblock %}
+
+{% block extra_head %}
+<style>
+  body {
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat fixed;
+  }
+  .login-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center">
+  <div class="login-card">
+    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+    <form method="POST" action="{% url 'accounts:login' %}">
+      {% csrf_token %}
+      <div class="mb-3">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+      </div>
+      <div class="mb-3">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+      </div>
+      <div class="form-check mb-3">
+        {{ form.remember_me }}
+        {{ form.remember_me.label_tag }}
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </div>
+    </form>
+    <div class="text-center mt-3">
+      <a href="#">¿Olvidaste tu contraseña?</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
