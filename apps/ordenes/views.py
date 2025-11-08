@@ -135,5 +135,57 @@ class OrdenDetalleDeleteView(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return f'/ordenes/ordenes/{self.object.orden.id}/detalles/'
 
+class OrdenPagarView(LoginRequiredMixin, View):
+    def get(self, request, orden_id):
+        orden = Orden.objects.get(id=orden_id)
+        detalles = OrdenDetalle.objects.filter(orden=orden)
+        total = sum(detalle.cantidad * detalle.precio_unitario for detalle in detalles)
+        
+        form = PagoForm(initial={'orden': orden, 'cantidad': total})
 
+        return render(request, 'ordenes/ordenes_pagar.html', {'orden': orden, 'detalles': detalles, 'total': total, 'form': form})
+    def post(self, request, orden_id):
+        form = PagoForm(request.POST)
+        if form.is_valid():
+            with transaction.atomic():
+                pago = form.save(commit=False)
+                pago.orden = Orden.objects.get(id=orden_id)
+                pago.save()
 
+                orden = pago.orden
+                orden.estatus = 'pagada'
+                orden.save()
+
+                mesa = orden.mesa
+                mesa.estado = MesaEstado.objects.get(nombre='Disponible')
+                mesa.save()
+
+                return redirect('ordenes:ordenes_list')
+        return render(request, 'ordenes/ordenes_pagar.html', {'form': form})
+
+class MetodoPagoListView(LoginRequiredMixin, ListView):
+    model = MetodoPago
+    template_name = 'pagos/metodos_pago_list.html'
+    context_object_name = 'metodos_pago'
+
+class MetodoPagoCreateView(LoginRequiredMixin, CreateView):
+    model = MetodoPago
+    form_class = MetodoPagoForm
+    template_name = 'pagos/metodos_pago_form.html'
+    success_url = '/ordenes/metodos_pago/'
+
+class MetodoPagoUpdateView(LoginRequiredMixin, UpdateView):
+    model = MetodoPago
+    form_class = MetodoPagoForm
+    template_name = 'pagos/metodos_pago_edit_form.html'
+    success_url = '/ordenes/metodos_pago/'
+
+class MetodoPagoDeleteView(LoginRequiredMixin, DeleteView):
+    model = MetodoPago
+    template_name = 'pagos/metodos_pago_confirm_delete.html'
+    success_url = '/ordenes/metodos_pago/'    
+
+class PagoListView(LoginRequiredMixin, ListView):
+    model = Pago
+    template_name = 'pagos/pagos_list.html'
+    context_object_name = 'pagos'

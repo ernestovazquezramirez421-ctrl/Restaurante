@@ -196,7 +196,7 @@
 
         <ul class="list-unstyled">
             <li class="active">
-                <a href="#"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                <a href="{% url 'index_user' %}"><i class="bi bi-speedometer2"></i> Dashboard</a>
             </li>
             <li>
                 <a href="{% url 'ordenes:ordenes_list' %}"><i class="bi bi-cart"></i> Órdenes</a>
@@ -211,7 +211,7 @@
                 <a href="#"><i class="bi bi-people"></i> Clientes</a>
             </li>
             <li>
-                <a href="#"><i class="bi bi-bar-chart"></i> Reportes</a>
+                <a href="{% url 'ordenes:pagos_list' %}"><i class="bi bi-credit-card"></i> Pagos</a>
             </li>
             <li>
                 <a href="{% url 'accounts:user_list' %}"><i class="bi bi-people-fill"></i> Usuarios</a>
