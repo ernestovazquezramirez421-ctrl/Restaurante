@@ -84,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'restaurante.wsgi.application'
+WSGI_APPLICATION = 'restaurante_marisco.wsgi.application'
 
 # --------------------
 # DATABASES  (LOCAL = SQLite / RENDER = PostgreSQL)

@@ -6,7 +6,7 @@ import sys
 def main():
     """Run administrative tasks."""
     # Forzar variable de entorno para Render gratuito
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "restaurante.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "restaurante_marisco.settings")
     
     # Forzar la ruta del proyecto
     current_path = os.path.dirname(os.path.abspath(__file__))
