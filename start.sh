@@ -6,4 +6,4 @@ set -o errexit
 export DJANGO_SETTINGS_MODULE=restaurante.settings
 
 # Ejecutar Gunicorn
-gunicorn restaurante.wsgi:application --bind 0.0.0.0:$PORT --workers 4
+gunicorn restaurante_marisco.wsgi:application --bind 0.0.0.0:$PORT --workers 4
