@@ -57,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'restaurante.urls'
+ROOT_URLCONF = 'restaurante_marisco.urls'
 
 TEMPLATES = [
     {
