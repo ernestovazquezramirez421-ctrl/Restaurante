@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # --------------------
 # GENERAL SETTINGS
 # --------------------
-DEBUG = os.getenv("DEBUG", "True") == "True"
+DEBUG = os.getenv("DEBUG", "False") == "True"  # Por seguridad, False por defecto
 
 SECRET_KEY = os.getenv(
     "SECRET_KEY",
@@ -51,10 +51,7 @@ INSTALLED_APPS = [
 # --------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
-    # WhiteNoise solo si DEBUG=False
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise siempre activo
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -128,15 +125,14 @@ USE_TZ = True
 # --------------------
 STATIC_URL = '/static/'
 
-# Carpeta de archivos estáticos para desarrollo
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# Carpeta de archivos estáticos (desarrollo y producción)
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
-# Carpeta de archivos estáticos para producción
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# Carpeta de archivos estáticos para collectstatic
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# WhiteNoise siempre activo
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # --------------------
 # CUSTOM USER MODEL
